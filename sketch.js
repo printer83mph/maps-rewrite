@@ -37,7 +37,7 @@ function Ball(x, y, r) {
     this.position.add(this.velocity);
 		this.acceleration.set(0,0.3);
 		this.checkEdgeCollide();
-		this.acceleration.sub(this.velocity.x * 0.001, this.velocity.y * 0.001);
+		this.acceleration.sub(this.velocity.x * 0.005, this.velocity.y * 0.005);
 		if(this.dragged) {
 			this.acceleration.add((mouseX-this.position.x)/r/5,(mouseY-this.position.y)/r/5);
 		}
@@ -48,6 +48,7 @@ function Ball(x, y, r) {
   this.draw = function() {
 		this.movement();
     fill(0,0);
+		stroke(0);
     ellipse(this.position.x, this.position.y, this.r*2, this.r*2);
 		if(this.dragged) {
 			line(this.position.x,this.position.y,mouseX,mouseY);
@@ -58,6 +59,7 @@ function Ball(x, y, r) {
 function setup() {
   canvas = createCanvas(window.innerWidth, window.innerHeight);
   smooth();
+	strokeWeight(5);
 }
 
 function draw() {
