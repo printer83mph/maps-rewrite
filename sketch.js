@@ -9,27 +9,32 @@ function Ball(x, y, r) {
   this.checkEdgeCollide = function() {
     if(this.position.x < this.r) {
       this.position.x = this.r;
-      this.acceleration.x += this.velocity.x *= -0.8;
+      this.acceleration.x += this.velocity.x * -1.8;
+	  console.log('hit wall');
     }
     if(this.position.x > width - this.r) {
       this.position.x = width - this.r;
-      this.acceleration.x += this.velocity.x *= -0.8;
+      this.acceleration.x += this.velocity.x * -1.8;
+	  console.log('hit wall');
     }
     if(this.position.y < this.r) {
       this.position.y = this.r;
-      this.acceleration.y += this.velocity.y *= -0.8;
+      this.acceleration.y += this.velocity.y * -1.8;
+	  console.log('hit wall');
     }
     if(this.position.y > height - this.r) {
       this.position.y = height - this.r;
-      this.acceleration.y += this.velocity.y *= -0.8;
+      this.acceleration.y += this.velocity.y * -1.8;
+	  console.log('hit wall');
     }
   }
   
   this.movement = function() {
-    this.acceleration.set(0,0.3);
+    this.acceleration.set(0,1);
     this.checkEdgeCollide();
-    this.acceleration.add(this.velocity.mul(-0.005));
+	console.log(this.acceleration.y + ' accel');
     this.velocity.add(this.acceleration);
+	console.log(this.velocity.y + ' speed');
     this.position.add(this.velocity);
   }
   
@@ -42,8 +47,18 @@ function Ball(x, y, r) {
 
 function setup() {
   canvas = createCanvas(window.innerWidth, window.innerHeight);
+  smooth();
 }
 
 function draw() {
-  
+  background(255);
+  for(var i in balls) {
+	balls[i].draw();
+  }
+}
+
+function keyPressed() {
+	if(key === "F") {
+		balls.push(new Ball(mouseX,mouseY,random(10,100)));
+	}
 }
