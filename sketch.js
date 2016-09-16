@@ -43,6 +43,8 @@ function Ball(x, y, r) {
 		}
 		stroke(255,0,0);
 		line(this.position.x, this.position.y, this.position.x + this.acceleration.x * 100, this.position.y + this.acceleration.y * 100);
+		stroke(0,0,255);
+		line(this.position.x, this.position.y, this.position.x + this.velocity.x * 5, this.position.y + this.velocity.y * 5);
   }
   
   this.draw = function() {
