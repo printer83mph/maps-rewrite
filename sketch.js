@@ -67,7 +67,7 @@ function setup() {
 function draw() {
   background(255);
   for(var i in balls) {
-	balls[i].draw();
+		balls[i].draw();
   }
 }
 
@@ -76,8 +76,10 @@ function keyPressed() {
     balls.push(new Ball(mouseX,mouseY,random(10,100)));
   }
 	if(key === "R") {
-    if(dist(mouseX,mouseY,balls[i].position.x,balls[i].position.y) < balls[i].r) {
-			balls.splice(i,1);
+		for(var i in balls) {
+			if(dist(mouseX,mouseY,balls[i].position.x,balls[i].position.y) < balls[i].r) {
+				balls.splice(i,1);
+			}
 		}
   }
 	if(key === "C") {
